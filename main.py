@@ -4,14 +4,14 @@ clockedIn = [8 , 8 , 8 , 10 , 10 , 8]
 
 
 def intro():
-    print("Welcome Detective! We are so grateful to have you on this case. \nWe have found a body at the Wyland Inc. office today on 10/06/2026. Here's what we know.\n\nVictim is female and apparently an office worker. We haven't identified the body yet. \nShe was found in the women's bathroom at 9:45 am and we now know that \nShe was killed around 9:00 am it looks like from fatal bowel movement.. \nShe had an empty coffee cup so we suppose she was poisoned through that.\nThe Scranton police department is low on staff so we really need you. \n\nI am captain Kirk. I will be assisting you on this case.")
+    print("Welcome Detective! We are so grateful to have you on this case. \nWe have found a body at the Wyland Inc. office today on 10/06/2026. Here's what we know.\n\nVictim is female and apparently an office worker.\nWe haven't identified the body yet.\nShe has very long wavy brown hair and brown eyes. \nShe was found in the women's bathroom at 9:45 am and we now know that \nShe was killed around 9:00 am it looks like from fatal bowel movement.. \nShe had an empty coffee cup so we suppose she was poisoned through that.\nThe Scranton police department is low on staff so we really need you. \n\nI am captain Kirk. I will be assisting you on this case.")
 
 def firstRoom():
     #user sees the info on the id including the person's birthday and user has to 
     #calculate the victims age then they type it out as an integer
     # output would be saying if they are a suspect or not (eliminate 5- 6 left)
 
-    print("According to the owner of the company, this morning was shipment day. \nAll those who were working in the warehouse and were accounted for during the killing are 22 and younger. \nBut she could have gone up to the office to use the restroom. So we really just need to figure out her age.\n\nDetective, can you please check if she has a wallet with an ID? \n\nBROOKLYN COMACHO-------------------------------DOB: 04/18/2000\n Ok now we know she is over 22 and was working in the office that morning. \nLet's see who else would have been in the office. Could you check the worker's birthdays for me?")
+    print("According to the owner of the company, this morning was shipment day. \nAll those who were working in the warehouse and were accounted for during the killing are 22 and younger. \nBut she could have gone up to the office to use the restroom. So we really just need to figure out her age.\n\nDetective, can you please check if she has a wallet with an ID? \n\nBROOKLYN-------------------------------DOB: 04/18/2000\n Ok now we know she is over 22 and was working in the office that morning. \nLet's see who else would have been in the office. Could you check the worker's birthdays for me?")
     i = 0
     susNamesCopy = susNames.copy()
 
@@ -24,7 +24,7 @@ def firstRoom():
 
         while(suspectAge != str(age)):
             print("That is not correct try again. ")
-            suspectAge = input("How old is the suspect? ")
+            suspectAge = input("How old is the suspect? ").strip()
             age = 2026 - int(year)
         i = i+1
 
@@ -66,25 +66,22 @@ def thirdRoom():
     print("We've got a permit to search the building. Can you start with the suspect's lockers? \nLook for anything suspicious. Whose should we check first? \n(Type Done when finished investigating)")
 
     name = ""
-    name = input("Who should we first ask? ").upper()
+    name = input("Who should we first ask? ").strip().upper()
 
     while name != "DONE":
         if name == "JOSH":
             print("coke zero\nbasketball\nsneakers")
         elif name == "MAYA":
-            print("hairbrush\nempty of laxatives\npurse")
+            print("hairbrush\nempty bottle of laxatives\npurse")
         elif name == "HANNAH":
             print("stuffed animal\nhair oil\nsingular super long wavy brown hair")
         elif name == "CHASE":
             print("Earbuds\nbook\nbinoculars")
         else:
             print("They are not a suspect")
-        name = input("Who should we ask next? Type Done if finished investigating. ").upper()
+        name = input("Who should we ask next? Type Done if finished investigating. ").strip().upper()
 
-    suspect = input("Okay, now you have some clues. Analyze it and ask yourself : Who is no longer a suspect? ").upper()
-    while suspect != "JOSH":
-        suspect = input("INCORRECT! Who is no longer a suspect? ").upper()
-
+    print("Okay, now you have some clues. Josh doesn't seem to have anything suspicious in his locker so he is no longer a suspect.")
 
 def fourthRoom():
     #user gets a list of the remaining suspects and a list of 3 questions for each suspect that is numbered
@@ -99,54 +96,64 @@ def fourthRoom():
     oldName = []
 
     while count < 3:
-        name = input("Who do you want to talk to? ").upper()
+        name = input("Who do you want to talk to? ").strip().upper()
         while (name in oldName):
-            name = input("Choose a different person. Who do you want to talk to? ") .upper()
+            name = input("Choose a different person. Who do you want to talk to? ").strip().upper()
+
         oldName.append(name.upper())
 
         if name == "MAYA":
-            num = input("Ok, now type the number of the question you want to ask.")
+            num = input("Ok, now type the number of the question you want to ask.").strip()
+
+            while (num.isdigit() == False) or (num !="1" and num !="2" and num !="3"): 
+                num = input("That is not a valid number. Choose a number 1-3: ").strip()
+
             if num == "1":
                 print("I didn't know her very well but she seemed very nice. She was a very good worker.")
             elif num == "2":
                 print("I was in the bathroom I think. Someone was definitely blowing it up though...")
             elif num == "3":
                 print("I think maybe orange juice?")
-            else:
-                print("That is not a valid number. Choose a number 1-3.")
+            
             count = count + 1
 
         elif name == "HANNAH":
-            num = input("Ok, now type the number of the question you want to ask.")
+            num = input("Ok, now type the number of the question you want to ask.").strip()
+
+            while (num.isdigit() == False) or (num !="1" and num !="2" and num !="3"): 
+                num = input("That is not a valid number. Choose a number 1-3: ").strip()
             if num == "1":
                 print("Uhh oh yeah we were best friends! I am going to miss her sooo much!!")
             elif num == "2":
-                print("I was talking to Chase at his cubicle. I had soooo many questions about his vacation! \nHe loves all my questions.")
+                print("I was talking to Chase at his cubicle. He is so cute. I had soooo many questions about his vacation! \nHe loves all my questions.")
             elif num == "3":
                 print("Coffee.")
             else:
-                print("That is not a valid number. Choose a number 1-3.")
+                print("That is not a valid number. Choose a number 1-3.").strip()
             count = count + 1
 
         elif name == "CHASE":
-            num = input("Ok, now type the number of the question you want to ask.")
+            num = input("Ok, now type the number of the question you want to ask.").strip()
+
+            while (num.isdigit() == False) or (num !="1" and num !="2" and num !="3"): 
+                num = input("That is not a valid number. Choose a number 1-3: ").strip()
+
             if num == "1":
                 print("I have always had a bit of a crush on her but I don't know how she felt about me. ")
             elif num == "2":
                 print("I was at my cubicle quietly doing my work.")
             elif num == "3":
                 print("Most people drink coffee right?")
-            else:
-                print("That is not a valid number. Choose a number 1-3.")
+
             count = count + 1
 
         else:
             print("That is not a suspect. ")
 
-    suspect = input("Good job detective! You have enough clues to eliminate someone. Who is no longer a suspect?").upper()
+    suspect = input("Good job detective! You have enough clues to eliminate someone. Who is no longer a suspect?").strip().upper()
 
     while suspect != "CHASE":
-        suspect = input("INCORRECT! Who is no longer a suspect?").upper()
+        suspect = input("INCORRECT! Who is no longer a suspect?").strip().upper()
 
 def fifthRoom():
     #user gets a written note that says "go to my desk I am innocent I know who did it though, 
@@ -158,12 +165,12 @@ def fifthRoom():
 
     print("Wait detective!! What is that under the chair suspect?? Can you go check that out for me?\n Thank you. Let's look at what it says.\n \nI am innocent but i know who the killer is \nand i think they are framing me. I couldn't tell you \nhere because i think they would kill me. Go \nto my desk and look for the red letters. \nThere you will find the answer. \n \nYou can go check this out, right detective? \nI'll stay here at the station and uhh look at more of this evidence.. \n\nBe careful! The lights are usually automatically off this time at night in the office. ")
 
-    name = input("There are two suspects remaining, who's cubicle do you want to go to Maya or Hannah? This is a life or death decision!").upper()
+    name = input("There are two suspects remaining, who's cubicle do you want to go to Maya or Hannah? This is a life or death decision! Remember choose the person who you think is inoccent.").strip().upper()
 
     if name == "MAYA":
         print("A\nA\nH\n Congratulations, you are safe! The killer is Hannah!!")
     else:
-        print("OH NO!! Someone just poisoned you! \nYou did not choose the innocent person's desk... \nIt was Hannah the whole time!! She liked Chase but he liked Brooklyn!! \n12 So she poisoned her with laxatives and framed Maya by putting the empty bottle in her locker.\n\n\n You fall to the ground and die.")
+        print("OH NO!! Someone just poisoned you! \nYou did not choose the innocent person's desk... \nIt was Hannah the whole time!! She liked Chase but he liked Brooklyn!! \nSo she poisoned her with laxatives and framed Maya by putting the empty bottle in her locker.\n\n\n You fall to the ground and die.")
 
 
 
